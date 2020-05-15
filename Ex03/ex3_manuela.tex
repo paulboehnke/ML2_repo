@@ -1,0 +1,85 @@
+\documentclass{article}
+
+% formatting and layout
+\usepackage[left=2.5cm, right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\setlength{\parindent}{0pt}
+
+% input/output language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+% math packages
+\usepackage{amsmath, amsfonts, dsfont, amsthm}
+
+% new commands
+\newcommand{\Prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\prob}[1]{p\!\left(#1\right)}
+\newcommand{\cProb}[2]{\mathbb{P}\left(#1 \mid #2\right)}
+\newcommand{\cprob}[2]{p\left(#1 \mid #2\right)}
+\newcommand{\Bi}[3]{\text{Bi}_{{#1}, {#2}}\left( #3 \right)}
+\newcommand{\Po}[2]{\text{Po}_{#1}\left( #2 \right)}
+\newcommand{\exponential}[1]{e^{#1}}
+\newcommand{\binomial}[2]{{#1 \choose #2}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\expect}[1]{\mathrm{E}\left[#1\right]}
+\newcommand{\var}[1]{\mathrm{Var}\left[#1\right]}
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\dy}{\mathrm{d}y}
+
+\begin{document}
+\begin{center}
+	\Huge \textsc{Machine Learning 2} \\
+    \Large \textbf{Exercise Sheet 3}
+\end{center}
+
+\hrule
+
+\section*{Exercise 1: Maximum Entropy Distributions} 
+\begin{itemize}
+\item[\textbf{(a)}]
+\item[\textbf{(b)}]
+\end{itemize}
+
+\section*{Exercise 2: Independent Components in Two Dimensions} 
+\[ \prob{x} \sim \N(0,1) \]
+\[ \cprob{y}{x} = \frac{1}{2} \delta(y-x) + \frac{1}{2} \delta(y+x) \]
+\begin{itemize}
+\item[\textbf{(a)}]
+\item[\textbf{(b)}]
+We have
+\begin{align*}
+\expect{z}
+	&= \int_x \int_y z(x,y) \cdot \prob{x,y} \dx\dy \\
+	&= \int_x \int_y \left( x \cos\theta + y \cos \theta \right) \cdot \prob{x} \left( \dfrac{1}{2} \delta(y-x) + \dfrac{1}{2} \delta(y+x) \right) \dx \dy \\
+	&= \int \left( \dfrac{1}{2} \left( x \cos \theta + x \sin \theta \right) + \dfrac{1}{2} \left( x \cos \theta - x \sin \theta \right) \right) \prob{x} \dx \\
+	&= \left( \dfrac{\cos \theta + \sin \theta}{2} + \dfrac{\cos \theta - \sin \theta}{2} \right) \underbrace{\int x \; \prob{x} \dx}_{\expect{x}=0}
+	= 0 \\
+\intertext{and}
+\expect{z^2}
+	&= \int \left( \dfrac{1}{2} \left( x \cos \theta + x \sin \theta \right)^2 + \dfrac{1}{2} \left( x \cos \theta - x \sin \theta \right)^2\right) \; \prob{x} \dx \\
+	&= \left( \dfrac{\left( \cos \theta + \sin \theta \right)^2}{2} + \dfrac{\left( \cos \theta - \sin \theta \right)^2}{2} \right) \underbrace{\int x^2 \; \prob{x} \dx}_{\expect{x^2} = \var{x} = 1} \\
+	&= \cos^2 \theta + \sin^2 \theta \\
+	&= 1.
+\end{align*}
+Since the variance is the same in any direction, there are no principal components.
+\item[\textbf{(c)}]
+\begin{align*}
+\expect{z^4} - 3
+	&= \left(  \dfrac{\left( \cos \theta + \sin \theta \right)^4}{2} +  \dfrac{\left( \cos \theta + \sin \theta \right)^4}{2} \right) \underbrace{\int x^4 \; \prob{x} \dx}_{\expect{x^4}=3} - 3 \\
+	&= \cos^4 \theta + \sin^4 \theta + 2 \cos^2 \theta \sin^2 \theta + 4 \cos^2 \theta \sin^2 \theta \\
+	&= \left( \cos^2 \theta + \sin^2 \theta \right)^2 + 4 \left( \cos \theta \sin \theta \right)^2 \\
+	&= 1 + \left( \sin(2 \theta) \right)^2 \\
+	&= \dfrac{1 - \cos(4 \theta)}{2}
+\end{align*}
+\end{itemize}
+
+\section*{Deriving a Special Case of FastICA} 
+\begin{itemize}
+\item[\textbf{(a)}]
+\item[\textbf{(b)}]
+\item[\textbf{(c)}]
+\item[\textbf{(d)}]
+\end{itemize}
+\end{document}
