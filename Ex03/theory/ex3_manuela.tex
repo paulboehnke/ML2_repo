@@ -28,6 +28,7 @@
 \newcommand{\dy}{\mathrm{d}y}
 \newcommand{\lagr}{\mathcal{L}}
 \newcommand{\lagrange}[1]{\mathcal{L}\left( #1 \right)}
+\newcommand{\G}{\mathcal{G}}
 
 \begin{document}
 \begin{center}
@@ -40,7 +41,22 @@
 \section*{Exercise 1: Maximum Entropy Distributions} 
 \begin{itemize}
 \item[\textbf{(a)}]
+\begin{align*}
+\lagrange{(s(x)_{x\in\G}), \lambda_1, \lambda_2, \lambda_3} = 
+	- \sum_{x \in G} \exp(s(x))s(x) \delta 
+		&+ \lambda_1 \left( \sum_{x\in\G} \exp(s(x))\delta - 1 \right) \\ 
+		&+ \lambda_2 \left( \sum_{x\in\G} x \cdot \exp(s(x)) \delta - 0 \right) \\
+		&+ \lambda_3 \left( \sum_{x\in\G} x^2 \exp(s(x)) \delta - \sigma^2 \right)
+\end{align*}
 \item[\textbf{(b)}]
+\begin{align*}
+\dfrac{\partial \lagr}{\partial s(x)}
+	&= - \exp(s(x))(s(x)+1)+\lambda_1\exp(s(x)) + \lambda_2x\exp(s(x)) + \lambda_3x^2
+\end{align*}
+Setting this to zero leads to
+\[ -s(x)-1 + \lambda_1 + \lambda_2x + \lambda_3x^2=0 \]
+and thus,
+\[ \prob{x} = \exp(s(x)) = \exp(\lambda_3x^2 + \lambda_2x+\lambda_1-1) .\]
 \end{itemize}
 
 \section*{Exercise 2: Independent Components in Two Dimensions} 
