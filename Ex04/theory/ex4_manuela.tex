@@ -1,0 +1,70 @@
+\documentclass{article}
+
+% formatting and layout
+\usepackage[left=2.5cm, right=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+\setlength{\parindent}{0pt}
+
+% input/output language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+% math packages
+\usepackage{amsmath, amsfonts, dsfont, amsthm}
+\usepackage{tikz}
+
+% new commands
+\newcommand{\Prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\prob}[1]{p\!\left(#1\right)}
+\newcommand{\cProb}[2]{\mathbb{P}\left(#1 \mid #2\right)}
+\newcommand{\cprob}[2]{p\left(#1 \mid #2\right)}
+\newcommand{\Bi}[3]{\text{Bi}_{{#1}, {#2}}\left( #3 \right)}
+\newcommand{\exponential}[1]{e^{#1}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\expect}[1]{\mathrm{E}\left[#1\right]}
+\newcommand{\var}[1]{\mathrm{Var}\left[#1\right]}
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\dy}{\mathrm{d}y}
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\lagrange}[1]{\mathcal{L}\left( #1 \right)}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\real}{\mathbb{R}}
+
+\begin{document}
+\begin{center}
+	\Huge \textsc{Machine Learning 2} \\
+    \Large \textbf{Exercise Sheet 4}
+\end{center}
+
+\hrule
+
+\subsection*{Exercise 1: Convolution Kernel} 
+\begin{itemize}
+\item[\textbf{(a)}]
+Let $c_1, \dots, c_N \in \real$. For inputs $x_1,\dots,x_N$ we then have
+\begin{align*}
+\sum_{i=1}^{N} \sum_{j=1}^{N} c_i c_j k(x_i, x_j)
+	&= \sum_{i=1}^{N} \sum_{j=1}^{N} c_i c_j \sum_{t=-\infty}^{\infty} \left( [ x_i * x_j ]_t \right)^2 \\
+	&= \sum_{i=1}^{N} \sum_{j=1}^{N} c_i c_j \sum_{t=-\infty}^{\infty} \left( \sum_{\tau=-\infty}^{\infty} x_i(\tau) \cdot x_j(t - \tau) \right)^2 \\
+	&= \sum_{j=1}^{N} c_j \sum_{i=1}^{N} c_i \sum_{t=-\infty}^{\infty} \left( \sum_{\tau=-\infty}^{\infty} x_i(\tau) \cdot x_j(t - \tau) \right)^2 \\
+	&= \sum_{j=1}^{N} c_j \sum_{t=-\infty}^{\infty} \left( \sum_{\tau=-\infty}^{\infty} \sum_{i=1}^{N} c_i x_i(\tau) \cdot x_j(t - \tau) \right)^2 \\
+	&= \sum_{t=-\infty}^{\infty} \left( \sum_{\tau=-\infty}^{\infty} \sum_{i=1}^{N} c_i x_i(\tau) \cdot \sum_{j=1}^{N} c_j x_j(t - \tau) \right)^2 \\
+	&\geq 0
+\end{align*}
+\item[\textbf{(b)}]
+\end{itemize}
+
+\subsection*{Exercise 2: Weighted Degree Kernels} 
+\begin{itemize}
+\item[\textbf{(a)}]
+\item[\textbf{(b)}]
+\item[\textbf{(c)}]
+\end{itemize}
+
+\section*{Exercise 3: Fisher Kernels} 
+\begin{itemize}
+\item[\textbf{(a)}]
+\item[\textbf{(b)}]
+\end{itemize}
+\end{document}
